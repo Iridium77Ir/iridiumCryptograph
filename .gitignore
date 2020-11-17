@@ -1,0 +1,4 @@
+.vscode
+test.*
+test.*.ncr
+dec_test.*

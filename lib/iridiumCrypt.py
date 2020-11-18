@@ -33,14 +33,6 @@ class Cryptographer():
                 for j in range(ord(key[i][3])%4):
                     arr[x] = Cryptographer.shift(arr[x])
             return arr
-    
-    def substitute_arr(arr, key): # Doesn't work
-        for i in range(len(arr)):
-            for j in range(4):
-                for k in range(4):
-                    if ord(key[j][k])%(j+k+1) == 0:
-                        arr[i][j][k] = chr((ord(arr[i][j][k])+557056)%1114112).encode('utf-8')
-        return arr
 
     def xor_arr(arr, key):
         for i in range(len(arr)):
@@ -96,10 +88,8 @@ class Cryptographer():
         # Permute arrays   
         arrays = Cryptographer.shift_arr(arrays, key) # Should return 16,4,4 array - Does not work, because of the reinfolge
         #
-        #arrays = Cryptographer.substitute_arr(arrays, key) # Change some chars with some others - NOT WORKING
         arrays = Cryptographer.xor_arr(arrays, key)
         #
         arrays = Cryptographer.shift_arr(arrays, key) # Should return 16,4,4 array - Does not work, because of the reinfolge
-        
         
         return Cryptographer.bytes_from_array(arrays)
